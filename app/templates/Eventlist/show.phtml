@@ -1,0 +1,41 @@
+{block content}
+
+<div class="day">
+    <div class="day_name">
+        <div class="day_num">26.10</div>
+        <div class="day_text">
+            PO
+        </div>
+        <div class="day_text2">
+            {if $user->isLoggedIn()}
+            <a href="{link Eventlist:add}" title="Nová událost"  class="ajax day_text2">vložit</a>
+            {/if}
+        </div>
+    </div>
+    {if count($events) > 0}
+    <div n:foreach="$events as $event" class="description">
+    	<div class="head">
+            <img src="{$basePath}/images/hodiny.png" class="time" alt="cas"> {$event->event_date->format("H:i")}
+            <span class="predmet">{$event->Subject->name}</span>
+            <span class="obor">
+                {foreach $event->Subject->Specialization  as $specs}
+                    {$specs->shortcut}
+                    {if !$iterator->isLast()},{/if}
+                {/foreach}
+                - {$event->Subject->Specialization[0]->type}
+            </span>
+        </div>
+        <div class="body_text">{$event->text}</div>
+        <div class="foot">
+            <img src="{$basePath}/images/icon_tech.png" width="25" height="25" alt="Student" title="Učitel" class="textbottom"><a href="#" title="#" class="username">Mgr. Adam Dvořák</a>
+            <a href="#" title="Upozornění na e-mail" class="icons"><img src="{$basePath}/images/mail.png" class="textbottom" alt="mail"></a>
+            <a href="#" title="Editace" class="icons2"><img src="{$basePath}/images/edit-icon.png" class="textbottom" alt="edit"></a>
+            <a href="#" title="Odstranit" class="icons2"><img src="{$basePath}/images/delete.png" class="textbottom" alt="smazat"></a>
+        </div>
+    </div>
+    {else}
+    <p>Nic tu není.</p>
+    {/if}
+</div>
+<div class="clear"></div>
+

@@ -1,0 +1,1 @@
+Dibi 1.3-dev (revision c052582 released on 2010-09-15)
