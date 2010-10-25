@@ -34,11 +34,12 @@ final class EventlistPresenter extends BasePresenter
         $form->addText('datum_cas', 'Datum a čas:')
              ->addRule(Form::FILLED, 'Zadejte prosím datum a čas.')
              ->getControlPrototype()->class("datetime");
-        $form->addText('text','Událost:', 60, 100)
+        $form->addTextArea('text','Událost:', 40, 2)
              ->addRule(\Nette\Forms\Form::FILLED, 'Musíte vyplnit text!');
         $form->addSelect('obor', 'Obory:',Auth_users::findAllSpec($this->getUser()->id));
         $form->addJsonDependentSelectBox('rok', 'Ročník', $form['obor'], callback('Specialization::countYear'));
-        $form->addJsonDependentSelectBox('predmet', 'Předmět', array($form['obor'],$form['rok']), callback('Specialization::findAllSubject'));
+        $form->addSelect('semestr', 'Semestr:',array("ZS"=>"ZS","LS"=>"LS"));
+        $form->addJsonDependentSelectBox('predmet', 'Předmět', array($form['semestr'],$form['obor'],$form['rok']), callback('Specialization::findAllSubject'));
         $form->addSelect('soukromy', 'Soukromý:',array("Veřejné"=>"Veřejné","Student"=>"Student","Učitel"=>"Učitel"));
         if($this->isAjax())
             $form["predmet"]->addOnSubmitCallback(array($this, "invalidateControl"), "eventForm");
