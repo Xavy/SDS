@@ -35,11 +35,12 @@ $router[] = new Route('index.php', array(
 	'action' => 'default',
 ), Route::ONE_WAY);
 
-$router[] = new Route('events/<week>/<year>', array(
+$router[] = new Route('events/<week>/<year>/<day>', array(
 	'presenter' => 'Eventlist',
 	'action' => 'show',
 	'week' => NULL,
-        'year' => NULL
+        'year' => NULL,
+        'day' => NULL
 ));
 
 $router[] = new Route('<presenter>/<action>/<id>', array(

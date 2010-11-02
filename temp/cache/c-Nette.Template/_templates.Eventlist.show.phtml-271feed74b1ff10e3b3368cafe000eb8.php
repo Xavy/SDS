@@ -1,17 +1,21 @@
-<?php //netteCache[01]000232a:2:{s:4:"time";s:21:"0.85160400 1288684561";s:9:"callbacks";a:1:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:62:"D:\WWW\SDS\document_root/../app/templates/Eventlist/show.phtml";i:2;i:1288684559;}}}?><?php
+<?php //netteCache[01]000232a:2:{s:4:"time";s:21:"0.57293600 1288687296";s:9:"callbacks";a:1:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:62:"D:\WWW\SDS\document_root/../app/templates/Eventlist/show.phtml";i:2;i:1288687276;}}}?><?php
 // file …/templates/Eventlist/show.phtml
 //
 
-$_l = Nette\Templates\LatteMacros::initRuntime($template, NULL, 'c280c4f3de'); unset($_extends);
+$_l = Nette\Templates\LatteMacros::initRuntime($template, NULL, 'c22f2866ae'); unset($_extends);
 
 
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lbe382849205_content')) { function _lbe382849205_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb2442fb7cad_content')) { function _lb2442fb7cad_content($_l, $_args) { extract($_args)
 ;foreach ($iterator = $_l->its[] = new Nette\SmartCachingIterator($weekdays) as $day): ?>
 <div class="day">
+<?php if ($day): ?>
+    <div class="day_name_today">
+<?php else: ?>
     <div class="day_name">
+<?php endif ?>
         <div class="day_num"><?php echo Nette\Templates\TemplateHelpers::escapeHtml($template->date($day, 'j.m')) ?></div>
         <div class="day_text">
             <?php echo Nette\Templates\TemplateHelpers::escapeHtml($template->czDays($day)) ?>

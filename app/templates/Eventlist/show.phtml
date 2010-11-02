@@ -1,7 +1,11 @@
 {block content}
 {foreach $weekdays as $day}
 <div class="day">
+    {if $day|date:'w' == $setDay}
+    <div class="day_name_today">
+    {else}
     <div class="day_name">
+    {/if}
         <div class="day_num">{$day|date:'j.m'}</div>
         <div class="day_text">
             {$day|czDays}

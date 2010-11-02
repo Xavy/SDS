@@ -306,7 +306,7 @@ body {
 {
 	width: 59px;
 	height: auto;
-	min-height: 60px;
+	min-height: 80px;
 	float: left;
 	background: url(../images/calendar.png) no-repeat;
 }

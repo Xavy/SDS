@@ -19,6 +19,6 @@ class Helpers
                       "Fri"=>"PÁ",
                       "Sat"=>"SO",
                       "Sun"=>"NE");
-         return $CZDays[Date("D",$date)];
+         return $CZDays[Date("D",strtotime($date))];
     }
 }

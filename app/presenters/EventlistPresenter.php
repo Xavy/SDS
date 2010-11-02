@@ -4,16 +4,18 @@
 
 final class EventlistPresenter extends BasePresenter
 {
-    public function actionShow($week, $year)
+    public function actionShow($week, $year, $day)
     {
         if(is_null($week))
             $week = date("W");
         if(is_null($year))
             $year = date("Y");
+        if(is_null($day))
+            $day = date("w");
 
         list($from,$to) = Tools::weekRange($year, $week);
-
-        
+         Nette\Debug::barDump($day);
+        $this->template->setDay= $day;
         $this->template->weekdays = Tools::getAllDaysofWeek($year, $week);
         $this->template->events = Event::findAll()->
                 where("DATE_FORMAT(event_date,'%Y-%m-%d') BETWEEN %d AND %d",$from,$to);
