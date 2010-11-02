@@ -1,7 +1,7 @@
 {block content}
 {foreach $weekdays as $day}
 <div class="day">
-    {if $day|date:'w' == $setDay}
+    {if $setDay == $day|date:'N'}
     <div class="day_name_today">
     {else}
     <div class="day_name">
@@ -16,30 +16,30 @@
             {/if}
         </div>
     </div>
-    {if count($events) > 0}
-    <div n:foreach="$events as $event" class="description">
-    	<div class="head">
-            <img src="{$basePath}/images/hodiny.png" class="time" alt="cas"> {$event->event_date->format("H:i")}
-            <span class="predmet">{$event->Subject->name}</span>
-            <span class="obor">
-                {foreach $event->Subject->Specialization  as $specs}
-                    {$specs->shortcut}
-                    {if !$iterator->isLast()},{/if}
-                {/foreach}
-                - {$event->Subject->Specialization[0]->type}
-            </span>
-        </div>
-        <div class="body_text">{$event->text}</div>
-        <div class="foot">
-            <img src="{$basePath}/images/icon_tech.png" width="25" height="25" alt="Student" title="Učitel" class="textbottom"><a href="#" title="#" class="username">Mgr. Adam Dvořák</a>
-            <a href="#" title="Upozornění na e-mail" class="icons"><img src="{$basePath}/images/mail.png" class="textbottom" alt="mail"></a>
-            <a href="#" title="Editace" class="icons2"><img src="{$basePath}/images/edit-icon.png" class="textbottom" alt="edit"></a>
-            <a href="#" title="Odstranit" class="icons2"><img src="{$basePath}/images/delete.png" class="textbottom" alt="smazat"></a>
-        </div>
-    </div>
-    {else}
-    <p>Nic tu není.</p>
-    {/if}
+        {foreach $events as $event}
+            {if $day == $event->event_date->format("Y-m-d")}
+                <div class="description">
+                    <div class="head">
+                        <img src="{$basePath}/images/hodiny.png" class="time" alt="cas"> {$event->event_date->format("H:i")}
+                        <span class="predmet">{$event->Subject->name}</span>
+                        <span class="obor">
+                            {foreach $event->Subject->Specialization  as $specs}
+                                {$specs->shortcut}
+                                {if !$iterator->isLast()},{/if}
+                            {/foreach}
+                            - {$event->Subject->Specialization[0]->type}
+                        </span>
+                    </div>
+                    <div class="body_text">{$event->text}</div>
+                    <div class="foot">
+                        <img src="{$basePath}/images/icon_tech.png" width="25" height="25" alt="Student" title="Učitel" class="textbottom"><a href="#" title="#" class="username">Mgr. Adam Dvořák</a>
+                        <a href="#" title="Upozornění na e-mail" class="icons"><img src="{$basePath}/images/mail.png" class="textbottom" alt="mail"></a>
+                        <a href="#" title="Editace" class="icons2"><img src="{$basePath}/images/edit-icon.png" class="textbottom" alt="edit"></a>
+                        <a href="#" title="Odstranit" class="icons2"><img src="{$basePath}/images/delete.png" class="textbottom" alt="smazat"></a>
+                    </div>
+                </div>
+            {/if}
+        {/foreach} 
 </div>
 <div class="clear"></div>
 {/foreach}

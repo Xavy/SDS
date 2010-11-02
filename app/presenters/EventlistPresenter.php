@@ -11,10 +11,9 @@ final class EventlistPresenter extends BasePresenter
         if(is_null($year))
             $year = date("Y");
         if(is_null($day))
-            $day = date("w");
+            $day = date("N");
 
         list($from,$to) = Tools::weekRange($year, $week);
-         Nette\Debug::barDump($day);
         $this->template->setDay= $day;
         $this->template->weekdays = Tools::getAllDaysofWeek($year, $week);
         $this->template->events = Event::findAll()->
