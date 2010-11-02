@@ -13,7 +13,10 @@ final class EventlistPresenter extends BasePresenter
 
         list($from,$to) = Tools::weekRange($year, $week);
 
-        $this->template->events = Event::findAll();
+        
+        $this->template->weekdays = Tools::getAllDaysofWeek($year, $week);
+        $this->template->events = Event::findAll()->
+                where("DATE_FORMAT(event_date,'%Y-%m-%d') BETWEEN %d AND %d",$from,$to);
     }
 
     public function actionAdd()

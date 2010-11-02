@@ -31,8 +31,8 @@ $(document).ready(function() {
         $('<iframe id="externalSite" frameborder="0" class="externalSite" src="' + this.href + '" />').dialog({
             title: ($this.attr('title')) ? $this.attr('title') : 'External Site',
             autoOpen: true,
-            width: 550,
-            height: 305,
+            width: 470,
+            height: 340,
             modal: true,
             resizable: false,
             autoResize: true,
@@ -40,6 +40,6 @@ $(document).ready(function() {
                 opacity: 0.5,
                 background: "black"
             }
-        }).width(550 - horizontalPadding).height(305 - verticalPadding);
+        }).width(470 - horizontalPadding).height(340 - verticalPadding);
     });
 });

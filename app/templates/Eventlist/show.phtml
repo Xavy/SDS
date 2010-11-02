@@ -1,10 +1,10 @@
 {block content}
-
+{foreach $weekdays as $day}
 <div class="day">
     <div class="day_name">
-        <div class="day_num">26.10</div>
+        <div class="day_num">{$day|date:'j.m'}</div>
         <div class="day_text">
-            PO
+            {$day|czDays}
         </div>
         <div class="day_text2">
             {if $user->isLoggedIn()}
@@ -38,4 +38,5 @@
     {/if}
 </div>
 <div class="clear"></div>
+{/foreach}
 

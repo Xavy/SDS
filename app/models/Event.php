@@ -32,6 +32,14 @@ class Event extends Record
                     $specId);
     }
 
+    public static function findAllByWeek($from,$to)
+    {
+        return dibi::getConnection("ormion")
+            ->query("SELECT * FROM event
+                    WHERE DATE_FORMAT(event_date,'%Y-%m-%d') BETWEEN %d AND %d",
+                    $from, $to);
+    }
+
     
 
 }

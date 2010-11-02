@@ -31,9 +31,10 @@ class Specialization extends Record
         $specId = $form["obor"]->getValue();
         $year = $form["rok"]->getValue();
         $sem = $form["semestr"]->getValue();
+         Nette\Debug::barDump($sem);
         return dibi::getConnection("ormion")
             ->query("SELECT * FROM subject
-                    WHERE id IN (SELECT sub_id FROM `contains` WHERE spec_id=%i AND class=%i AND semestr=%i)",
+                    WHERE id IN (SELECT sub_id FROM `contains` WHERE spec_id=%i AND class=%i AND semestr=%s)",
                     $specId,$year,$sem)->fetchPairs("id", "name");
     }
 

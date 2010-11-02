@@ -65,4 +65,10 @@ abstract class BasePresenter extends Presenter
 
         return $form;
     }
+
+    protected function startup()
+    {
+        parent::startup();
+        $this->template->registerHelperLoader('Helpers::loader');
+    }
 }
