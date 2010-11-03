@@ -1,7 +1,7 @@
 {block content}
 {foreach $weekdays as $day}
 <div class="day">
-    {if $setDay == $day|date:'N'}
+    {if $setDay == $template->date('N',$day)}
     <div class="day_name_today">
     {else}
     <div class="day_name">
@@ -16,8 +16,8 @@
             {/if}
         </div>
     </div>
-        {foreach $events as $event}
-            {if $day == $event->event_date->format("Y-m-d")}
+        {if count($events[$day])>0}
+        {foreach $events[$day] as $event}
                 <div class="description">
                     <div class="head">
                         <img src="{$basePath}/images/hodiny.png" class="time" alt="cas"> {$event->event_date->format("H:i")}
@@ -38,8 +38,15 @@
                         <a href="#" title="Odstranit" class="icons2"><img src="{$basePath}/images/delete.png" class="textbottom" alt="smazat"></a>
                     </div>
                 </div>
-            {/if}
-        {/foreach} 
+        {/foreach}
+        {else}
+            <div class="description">
+                <div class="head_no"></div>
+                <div class="body_text">Tento den se dosud nekoná žádná událost.</div>
+                <div class="foot_no"></div>
+            </div>
+        {/if}
+
 </div>
 <div class="clear"></div>
 {/foreach}

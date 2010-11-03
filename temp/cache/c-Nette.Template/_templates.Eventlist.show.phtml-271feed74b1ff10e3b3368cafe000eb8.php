@@ -1,17 +1,17 @@
-<?php //netteCache[01]000232a:2:{s:4:"time";s:21:"0.22123000 1288706050";s:9:"callbacks";a:1:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:62:"D:\WWW\SDS\document_root/../app/templates/Eventlist/show.phtml";i:2;i:1288706047;}}}?><?php
+<?php //netteCache[01]000232a:2:{s:4:"time";s:21:"0.92142900 1288772346";s:9:"callbacks";a:1:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:62:"D:\WWW\SDS\document_root/../app/templates/Eventlist/show.phtml";i:2;i:1288771066;}}}?><?php
 // file …/templates/Eventlist/show.phtml
 //
 
-$_l = Nette\Templates\LatteMacros::initRuntime($template, NULL, 'f0aaf79c72'); unset($_extends);
+$_l = Nette\Templates\LatteMacros::initRuntime($template, NULL, '84a0620ae0'); unset($_extends);
 
 
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lbe244f0c800_content')) { function _lbe244f0c800_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb096c21709f_content')) { function _lb096c21709f_content($_l, $_args) { extract($_args)
 ;foreach ($iterator = $_l->its[] = new Nette\SmartCachingIterator($weekdays) as $day): ?>
 <div class="day">
-<?php if ($setDay == $day): ?>
+<?php if ($setDay == $template->date('N',$day)): ?>
     <div class="day_name_today">
 <?php else: ?>
     <div class="day_name">
@@ -27,7 +27,7 @@ if (!function_exists($_l->blocks['content'][] = '_lbe244f0c800_content')) { func
 <?php endif ?>
         </div>
     </div>
-<?php foreach ($iterator = $_l->its[] = new Nette\SmartCachingIterator($events) as $event): if ($day): ?>
+<?php if (count($events[$day])>0): foreach ($iterator = $_l->its[] = new Nette\SmartCachingIterator($events[$day]) as $event): ?>
                 <div class="description">
                     <div class="head">
                         <img src="<?php echo Nette\Templates\TemplateHelpers::escapeHtml($basePath) ?>/images/hodiny.png" class="time" alt="cas" /> <?php echo Nette\Templates\TemplateHelpers::escapeHtml($event->event_date->format("H:i")) ?>
@@ -52,7 +52,14 @@ if (!function_exists($_l->blocks['content'][] = '_lbe244f0c800_content')) { func
                         <a href="#" title="Odstranit" class="icons2"><img src="<?php echo Nette\Templates\TemplateHelpers::escapeHtml($basePath) ?>/images/delete.png" class="textbottom" alt="smazat" /></a>
                     </div>
                 </div>
-<?php endif ;endforeach; array_pop($_l->its); $iterator = end($_l->its) ?>
+<?php endforeach; array_pop($_l->its); $iterator = end($_l->its) ;else: ?>
+            <div class="description">
+                <div class="head_no"></div>
+                <div class="body_text">Tento den se dosud nekoná žádná událost.</div>
+                <div class="foot_no"></div>
+            </div>
+<?php endif ?>
+
 </div>
 <div class="clear"></div>
 <?php endforeach; array_pop($_l->its); $iterator = end($_l->its) ?>

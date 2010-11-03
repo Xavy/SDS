@@ -17,19 +17,15 @@ class Event extends Record
     const UCITEL = "ucitel";
     const ADMIN = "admin";
 
-    /**
-     * Vraci vsechny udalosti podle oboru.
-     *
-     * @param int $specId
-     * @param string $auth
-     * @return DibiResult
-     */
-    public static function findAllBySpec($specId, $auth = null, $rok = null, $semestr = null)
+    public static function findAllBySpec($den,$specID = null, $auth = null, $rok = null, $semestr = null)
     {
-       return dibi::getConnection("ormion")
-            ->query("SELECT * FROM event
-                    WHERE sub_id IN (SELECT sub_id FROM `contains` WHERE spec_id = %i)",
-                    $specId);
+      if($specID != null)
+      {
+            return Event::findAll()->
+                where("DATE_FORMAT(event_date,'%Y-%m-%d') = %d AND sub_id IN (SELECT sub_id FROM `contains` WHERE spec_id = %i)",$den,$specID);
+      }
+            return Event::findAll()->
+                where("DATE_FORMAT(event_date,'%Y-%m-%d') = %d",$den);
     }
 
     public static function findAllByWeek($from,$to)
@@ -39,6 +35,16 @@ class Event extends Record
                     WHERE DATE_FORMAT(event_date,'%Y-%m-%d') BETWEEN %d AND %d",
                     $from, $to);
     }
+    
+     public static function findAllByDay($day)
+    {
+        return dibi::getConnection("ormion")
+            ->query("SELECT * FROM event
+                    WHERE DATE_FORMAT(event_date,'%Y-%m-%d') = %d",
+                    $day);
+    }
+
+
 
     
 

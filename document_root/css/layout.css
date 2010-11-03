@@ -369,6 +369,16 @@ body {
 	background: url(../images/head.png) no-repeat;
 }
 
+.head_no
+{
+	width: 555px;
+	font-weight: bold;
+	padding-left: 10px;
+	height: 18px;
+	color:#FFF;
+	background: url(../images/head4.png) no-repeat;
+}
+
 .head_o
 {
 	width: 615px;
@@ -411,6 +421,14 @@ body {
 	padding: 5px;
 	height: 35px;
 	background: url(../images/foot.png) no-repeat;	
+}
+
+.foot_no
+{
+	width: 555px;
+	padding: 5px;
+	height: 18px;
+	background: url(../images/foot3.png) no-repeat;
 }
 
 .foot_o

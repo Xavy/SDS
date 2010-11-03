@@ -14,10 +14,17 @@ final class EventlistPresenter extends BasePresenter
             $day = date("N");
 
         list($from,$to) = Tools::weekRange($year, $week);
+
+        $tyden = array();
+        foreach(Tools::getAllDaysofWeek($year, $week) as $den)
+        {
+            $tyden[$den] = Event::findAllBySpec($den, 3);
+        }
+
+
         $this->template->setDay= $day;
         $this->template->weekdays = Tools::getAllDaysofWeek($year, $week);
-        $this->template->events = Event::findAll()->
-                where("DATE_FORMAT(event_date,'%Y-%m-%d') BETWEEN %d AND %d",$from,$to);
+        $this->template->events = $tyden;
     }
 
     public function actionAdd()
